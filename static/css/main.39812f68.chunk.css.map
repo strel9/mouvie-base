@@ -1,0 +1,1 @@
+{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAAA,KACC,sBAAuB,CACvB,iBACD,CAEA,QACC,wBAAyB,CACzB,aACD","file":"main.39812f68.chunk.css","sourcesContent":[".App {\r\n\tfont-family: sans-serif;\r\n\ttext-align: center;\r\n}\r\n\r\n.header {\r\n\tbackground-color: #081c24;\r\n\tcolor: aquamarine;\r\n}"]}
