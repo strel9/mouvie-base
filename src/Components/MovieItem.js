@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
-
+import Rating from './Rating'
+import nullMovie from '../Components/no_foto.jpg'
 export default class MovieItem extends Component {
 
     constructor() {
@@ -12,14 +13,28 @@ export default class MovieItem extends Component {
 
     render() {
         const { movie, removeMovie, addMovieToWillWatch, removeMovieToWillWatch } = this.props;
+        // const percentage = 66;
 
         return (
-            <div className="card">
-                <img className="card-img-top" src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path || movie.poster_path}`} alt="" />
-                <div className="card-body">
+            <div className="row">
+                <div className="card-img col-6">
+                    {movie.poster_path
+                        ? (
+                            <img className="card-img-top"
+                                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />)
+                        : (
+                            <img className="card-img-top"
+                                src={nullMovie} alt="" />)
+
+                    }
+
+                </div>
+                <div className="card-body col-6">
                     <h6 className="card-title">{movie.title}</h6>
+                    {/* <div className="mb-0">Rating: {movie.vote_average}</div> */}
+                    <Rating vote={movie.vote_average} />
+
                     <div className="d-flex justify-content-between align-items-center">
-                        <p className="mb-0">Rating: {movie.vote_average}</p>
                         {this.state.willWatch ?
                             (
                                 <button
@@ -51,11 +66,13 @@ export default class MovieItem extends Component {
                                 </button>
                             )
                         }
-
-                    </div>
-                    <button
-                        className="btn btn-primary" onClick={removeMovie.bind(null, movie)}>Del movie
+                        <button
+                            className="btn btn-primary" onClick={removeMovie.bind(null, movie)}>Del movie
                     </button>
+                    </div>
+                    <div>
+                        Подробнее...
+                    </div>
                 </div>
             </div >
         )
