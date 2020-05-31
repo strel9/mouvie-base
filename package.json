@@ -38,5 +38,8 @@
   "devDependencies": {
     "gh-pages": "^3.0.0"
   },
+  "resolutions": {
+    "@babel/preset-env": "7.5.5"
+  },
   "homepage": "http://strel9.github.io/movie-base"
 }
