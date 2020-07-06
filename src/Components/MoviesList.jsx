@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
+import { Col, Row, Form, Button, Pagination } from 'react-bootstrap';
 
 import MovieItem from './MovieItem';
 // import MovieTabs from './MovieTabs'
@@ -17,28 +18,26 @@ export default class MoviesList extends Component {
 		} = this.props;
 
 		return (
-			<div className="col-12 col-sm-9">
-				<div className="row mb-4">
-					<div className="col-12">
-						{/* <MovieTabs sort_by={sort_by} updateSortBy={updateSortBy} /> */}
-					</div>
-				</div>
-				<div className="row">
+			<>
+				<Row className="mb-4">
+					<Col xs={12}>{/* <MovieTabs sort_by={sort_by} updateSortBy={updateSortBy} /> */}</Col>
+				</Row>
+				<Row>
 					{movies.map((movie) => {
 						// рендерить только соответсвующие году movies.release_date обрезать какой то функцией до первого -
 						return (
-							<div className="col-6 mb-4" key={movie.id}>
+							<Col xs={6} md={6} className="mb-4" key={movie.id}>
 								<MovieItem
 									movie={movie}
 									removeMovie={removeMovie}
 									addMovieToWillWatch={addMovieToWillWatch}
 									removeMovieToWillWatch={removeMovieToWillWatch}
 								/>
-							</div>
+							</Col>
 						);
 					})}
-				</div>
-			</div>
+				</Row>
+			</>
 		);
 	}
 }

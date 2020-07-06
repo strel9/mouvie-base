@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import Sidebar from './Sidebar';
 import MoviesList from './MoviesList';
-import { Row, Container } from 'react-bootstrap';
+import { Col, Row, Container } from 'react-bootstrap';
 
 import { API_URL, API_KEY_3 } from '../utils/api';
 
@@ -183,32 +183,36 @@ export default class MoviesBody extends Component {
 			<Container>
 				{/* {console.log(this.state.movies)} */}
 				<Row>
-					<Sidebar
-						currentPage={currentPage}
-						total_pages={total_pages}
-						moviesWillWatch={moviesWillWatch}
-						movies={movies}
-						moviesGenre={moviesGenre}
-						moviesGenreActive={moviesGenreActive}
-						addMoviesGenre={addMoviesGenre}
-						removeMoviesGenre={removeMoviesGenre}
-						sort_by={sort_by}
-						onChangePopularity={(e) => onChangePopularity(e.target.value)}
-						onChangeYear={(e) => onChangeYear(e.target.value)}
-						paginationIncrease={paginationIncrease}
-						paginationDecrease={paginationDecrease}
-					/>
+					<Col xs={12} sm={12} md={3} lg={3}>
+						<Sidebar
+							currentPage={currentPage}
+							total_pages={total_pages}
+							moviesWillWatch={moviesWillWatch}
+							movies={movies}
+							moviesGenre={moviesGenre}
+							moviesGenreActive={moviesGenreActive}
+							addMoviesGenre={addMoviesGenre}
+							removeMoviesGenre={removeMoviesGenre}
+							sort_by={sort_by}
+							onChangePopularity={(e) => onChangePopularity(e.target.value)}
+							onChangeYear={(e) => onChangeYear(e.target.value)}
+							paginationIncrease={paginationIncrease}
+							paginationDecrease={paginationDecrease}
+						/>
+					</Col>
 
-					<MoviesList
-						currentPage={currentPage}
-						movies={movies}
-						sort_by={sort_by}
-						sort_year={sort_year}
-						updateSortBy={updateSortBy}
-						removeMovie={removeMovie}
-						addMovieToWillWatch={addMovieToWillWatch}
-						removeMovieToWillWatch={removeMovieToWillWatch}
-					/>
+					<Col xs={12} sm={12} md={9} lg={9}>
+						<MoviesList
+							currentPage={currentPage}
+							movies={movies}
+							sort_by={sort_by}
+							sort_year={sort_year}
+							updateSortBy={updateSortBy}
+							removeMovie={removeMovie}
+							addMovieToWillWatch={addMovieToWillWatch}
+							removeMovieToWillWatch={removeMovieToWillWatch}
+						/>
+					</Col>
 				</Row>
 			</Container>
 		);

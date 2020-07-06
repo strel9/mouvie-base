@@ -33,7 +33,7 @@ const Sidebar = ({
 	const popularity = ['popularity.desc', 'revenue.desc', 'vote_average.desc'];
 
 	return (
-		<Col xs={12} md={3} lg={3}>
+		<>
 			<div>Буду смотреть: {moviesWillWatch.length}</div>
 			<h3>Filters</h3>
 			<Form>
@@ -122,7 +122,7 @@ const Sidebar = ({
 					</div>
 				</div>
 			</Form>
-		</Col>
+		</>
 	);
 };
 

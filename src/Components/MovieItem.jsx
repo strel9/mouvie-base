@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import { Row, Col, ButtonGroup, ToggleButton } from 'react-bootstrap';
-
-import Rating from './Rating';
+import { Row, Col, Button, ToggleButton } from 'react-bootstrap';
+// import Icon from './icon/Icon';
+// import Rating from './Rating';
 import FontAwesome from 'react-fontawesome';
 import Image from './image/Image';
 import nullMovie from '../assets/images/no_foto.jpg';
+
+import {
+	CircularProgressbar,
+	CircularProgressbarWithChildren,
+	buildStyles,
+} from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 // import PropTypes from 'prop-types';
 
@@ -19,7 +26,7 @@ export default class MovieItem extends Component {
 
 		return (
 			<Row>
-				<div className="card-img col-6">
+				<Col xs={12} lg={6} className="card-img">
 					{movie.poster_path ? (
 						<>
 							<Image
@@ -36,17 +43,34 @@ export default class MovieItem extends Component {
 					) : (
 						<img className="card-img-top" src={nullMovie} alt="" />
 					)}
-				</div>
-				<div className="card-body col-6">
+				</Col>
+				<Col xs={12} lg={6} className="card-body">
 					{/* <h9 className="card-descr">{movie.overview}</h9> */}
 					{/* <div className="mb-0">Rating: {movie.vote_average}</div> */}
-					<FontAwesome className="" name="heart" size="2x" style={{ color: 'rgb(27, 105, 217)' }} />
-					<Rating vote={movie.vote_average} />
-					{/* {console.log(movie.release_date.split('-')[0])} */}
-					{/* {console.log(movie.id)} */}
+
 					<div className="d-flex justify-content-between align-items-center">
+						<Button className="btn btn-primary" onClick={removeMovie.bind(null, movie)}>
+							<FontAwesome
+								className=""
+								name="trash"
+								size="1x"
+								style={{ color: 'rgb(27, 105, 217)' }}
+							/>{' '}
+						</Button>
+						<div style={{ width: 50, height: 50 }}>
+							<CircularProgressbar
+								value={movie.vote_average * 10}
+								text={`${movie.vote_average * 10}%`}
+								strokeWidth={7}
+								styles={buildStyles({
+									textColor: '#1B69D9',
+									pathColor: '#1B69D9',
+									trailColor: '',
+								})}
+							/>
+						</div>
 						{this.state.willWatch ? (
-							<button
+							<Button
 								type="button"
 								className="btn btn-success"
 								onClick={() => {
@@ -55,10 +79,15 @@ export default class MovieItem extends Component {
 									});
 									removeMovieToWillWatch(movie);
 								}}>
-								Remove Watch
-							</button>
+								<FontAwesome
+									className=""
+									name="heart"
+									size="1x"
+									style={{ color: 'rgb(27, 105, 217)' }}
+								/>
+							</Button>
 						) : (
-							<button
+							<Button
 								type="button"
 								className="btn btn-primary"
 								onClick={() => {
@@ -67,17 +96,22 @@ export default class MovieItem extends Component {
 									});
 									addMovieToWillWatch(movie);
 								}}>
-								Will Watch
-							</button>
+								<FontAwesome
+									className=""
+									name="heart"
+									size="1x"
+									style={{ color: 'rgb(27, 105, 217)' }}
+								/>
+							</Button>
 						)}
-						<button className="btn btn-primary" onClick={removeMovie.bind(null, movie)}>
-							Del movie
-						</button>
 					</div>
+
+					{/* {console.log(movie.release_date.split('-')[0])} */}
+					{/* {console.log(movie.id)} */}
 
 					<h6 className="card-title">{movie.title}</h6>
 					<div>Подробнее...</div>
-				</div>
+				</Col>
 			</Row>
 		);
 	}
