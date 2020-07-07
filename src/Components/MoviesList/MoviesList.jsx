@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { Col, Row, Form, Button, Pagination } from 'react-bootstrap';
 
-import MovieItem from './MovieItem';
+import MovieItem from '../MovieItem/MovieItem';
 // import MovieTabs from './MovieTabs'
 export default class MoviesList extends Component {
 	render() {
 		const {
-			currentPage,
 			movies,
-			sort_by,
-			sort_year,
-			updateSortBy,
+			// sort_by,
+			// updateSortBy,
 			removeMovie,
 			addMovieToWillWatch,
 			removeMovieToWillWatch,
@@ -19,14 +17,13 @@ export default class MoviesList extends Component {
 
 		return (
 			<>
-				<Row className="mb-4">
-					<Col xs={12}>{/* <MovieTabs sort_by={sort_by} updateSortBy={updateSortBy} /> */}</Col>
-				</Row>
+				{/* <Row className="mb-4">
+					<Col xs={12}><MovieTabs sort_by={sort_by} updateSortBy={updateSortBy} /></Col>
+				</Row> */}
 				<Row>
 					{movies.map((movie) => {
-						// рендерить только соответсвующие году movies.release_date обрезать какой то функцией до первого -
 						return (
-							<Col xs={6} md={6} className="mb-4" key={movie.id}>
+							<Col xs={6} md={6} lg={4} className="card mb-4" key={movie.id}>
 								<MovieItem
 									movie={movie}
 									removeMovie={removeMovie}

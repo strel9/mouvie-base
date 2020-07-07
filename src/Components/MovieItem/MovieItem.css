@@ -1,0 +1,23 @@
+.card-item-relative {
+	position: relative;
+	text-overflow: ellipsis;
+}
+
+.card-item__like {
+	position: absolute;
+	top: 15px;
+	right: 30px;
+}
+
+.card-item__like:hover {
+	position: absolute;
+	top: 15px;
+	right: 30px;
+	background-color: red;
+}
+
+.card__progressbar {
+	position: absolute;
+	top: 340px;
+	right: 20px;
+}

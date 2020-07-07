@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles.css';
 
 import Header from './Header/Header';
-import MoviesBody from './MoviesBody';
+import MoviesBody from './MoviesBody/MoviesBody';
 
 class App extends React.Component {
 	render() {

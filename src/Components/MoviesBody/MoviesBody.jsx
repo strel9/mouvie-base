@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 
-import Sidebar from './Sidebar';
-import MoviesList from './MoviesList';
+import Sidebar from '../Sidebar/Sidebar';
+import MoviesList from '../MoviesList/MoviesList';
 import { Col, Row, Container } from 'react-bootstrap';
 
-import { API_URL, API_KEY_3 } from '../utils/api';
+import { API_URL, API_KEY_3 } from '../../utils/api';
 
 export default class MoviesBody extends Component {
 	state = {
@@ -14,7 +13,7 @@ export default class MoviesBody extends Component {
 		moviesGenreActive: [],
 		moviesWillWatch: [],
 		currentPage: 1,
-		total_pages: null,
+		totalPages: null,
 		sort_by: 'popularity.desc',
 		sortByPrimaryReleaseYear: null,
 	};
@@ -25,23 +24,12 @@ export default class MoviesBody extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		// console.log("didUodate")
-		// console.log("prev", prevProps, prevState)
-		// console.log("this", this.props, this.state)
-		if (prevState.sort_by !== this.state.sort_by) {
-			// console.log("call api")
-			this.getMovie();
-			this.getMovieGenre();
-		}
-		if (prevState.currentPage !== this.state.currentPage) {
-			this.getMovie();
-			this.getMovieGenre();
-		}
-		if (prevState.moviesGenreActive !== this.state.moviesGenreActive) {
-			this.getMovie();
-			this.getMovieGenre();
-		}
-		if (prevState.sortByPrimaryReleaseYear !== this.state.sortByPrimaryReleaseYear) {
+		if (
+			prevState.sort_by !== this.state.sort_by ||
+			prevState.currentPage !== this.state.currentPage ||
+			prevState.moviesGenreActive !== this.state.moviesGenreActive ||
+			prevState.sortByPrimaryReleaseYear !== this.state.sortByPrimaryReleaseYear
+		) {
 			this.getMovie();
 			this.getMovieGenre();
 		}
@@ -51,13 +39,10 @@ export default class MoviesBody extends Component {
 		const { sort_by, currentPage, moviesGenreActive, sortByPrimaryReleaseYear } = this.state;
 		fetch(
 			`${API_URL}discover/movie?api_key=${API_KEY_3}&sort_by=${sort_by}&page=${currentPage}&with_genres=${moviesGenreActive}&primary_release_year=${sortByPrimaryReleaseYear}`,
-			// &primary_release_year=2019&with_genres=18
 		)
 			.then((response) => response.json())
-			.then((data) => this.setState({ movies: data.results, total_pages: data.total_pages }));
+			.then((data) => this.setState({ movies: data.results, totalPages: data.total_pages }));
 		// .then((data) => console.log(data));
-		// total_pages
-		// console.log('after fetch');
 	};
 
 	getMovieGenre = () => {
@@ -65,9 +50,7 @@ export default class MoviesBody extends Component {
 		fetch(`${API_URL}genre/movie/list?api_key=${API_KEY_3}`)
 			.then((response) => response.json())
 			.then((data) => this.setState({ moviesGenre: data.genres }));
-		// .then((data) => console.log(data.genres));
-		// .then((data) => console.log(data.genres[0].id));
-		// console.log('after fetch');
+		// .then((data) => console.log(data));
 	};
 
 	removeMovie = (movie) => {
@@ -120,12 +103,6 @@ export default class MoviesBody extends Component {
 		}
 	};
 
-	updateSortBy = (value) => {
-		this.setState({
-			sort_by: value,
-		});
-	};
-
 	onChangePopularity = (value) => {
 		this.setState({
 			sort_by: value,
@@ -142,6 +119,7 @@ export default class MoviesBody extends Component {
 		const updateCurrentGenre = [...this.state.moviesGenreActive, id];
 		this.setState({
 			moviesGenreActive: updateCurrentGenre,
+			currentPage: 1,
 		});
 	};
 
@@ -159,15 +137,15 @@ export default class MoviesBody extends Component {
 			moviesGenreActive,
 			moviesWillWatch,
 			currentPage,
-			total_pages,
+			totalPages,
 			sort_by,
-			sort_year,
+			// sort_year,
 		} = this.state;
 
 		const {
 			onChangePopularity,
 			onChangeYear,
-			updateSortBy,
+			// updateSortBy,
 			removeMovie,
 			addMoviesGenre,
 			removeMoviesGenre,
@@ -186,7 +164,7 @@ export default class MoviesBody extends Component {
 					<Col xs={12} sm={12} md={3} lg={3}>
 						<Sidebar
 							currentPage={currentPage}
-							total_pages={total_pages}
+							totalPages={totalPages}
 							moviesWillWatch={moviesWillWatch}
 							movies={movies}
 							moviesGenre={moviesGenre}
@@ -203,11 +181,10 @@ export default class MoviesBody extends Component {
 
 					<Col xs={12} sm={12} md={9} lg={9}>
 						<MoviesList
-							currentPage={currentPage}
 							movies={movies}
-							sort_by={sort_by}
-							sort_year={sort_year}
-							updateSortBy={updateSortBy}
+							// sort_by={sort_by}
+							// sort_year={sort_year}
+							// updateSortBy={updateSortBy}
 							removeMovie={removeMovie}
 							addMovieToWillWatch={addMovieToWillWatch}
 							removeMovieToWillWatch={removeMovieToWillWatch}
