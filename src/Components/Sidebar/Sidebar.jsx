@@ -13,24 +13,12 @@ const Sidebar = ({
 	totalPages,
 	addMoviesGenre,
 	removeMoviesGenre,
-	onChangePopularity,
+	onChangeSortBy,
 	onChangeYear,
 	paginationIncrease,
 	paginationDecrease,
-	// movies,
-	// updateSortBy,
-	// sort_by,
 }) => {
-	const generateMoviesYearRelease = () => {
-		let years = [];
-		for (let index = new Date().getFullYear(); index > 1970; index--) {
-			years.push(index);
-		}
-		return years;
-	};
-	const years = generateMoviesYearRelease();
-
-	const popularity = [
+	const arrSortBy = [
 		{ id: 'popularity.desc', name: 'Popularity ↓' },
 		{ id: 'popularity.asc', name: 'Popularity ↑' },
 		{ id: 'release_date.desc', name: 'Release Date ↓' },
@@ -41,14 +29,29 @@ const Sidebar = ({
 		{ id: 'original_title.desc', name: 'Title Z-A' },
 	];
 
+	const generateMoviesYearRelease = () => {
+		let years = [];
+		for (let index = new Date().getFullYear(); index > 1970; index--) {
+			years.push(index);
+		}
+		return years;
+	};
+	const generateYears = generateMoviesYearRelease();
+
+	const years = generateYears.map((item) => (
+		<option key={item} value={item}>
+			{item}
+		</option>
+	));
+
 	return (
 		<div className="card">
 			<h3 className="card-top">Filters</h3>
 			<Form className="">
 				<div>
 					<Form.Label>Sort By:</Form.Label>
-					<Form.Control as="select" onChange={onChangePopularity}>
-						{popularity.map((item) => (
+					<Form.Control as="select" onChange={onChangeSortBy}>
+						{arrSortBy.map((item) => (
 							<option key={item.name} value={item.id}>
 								{item.name}
 							</option>
@@ -59,11 +62,7 @@ const Sidebar = ({
 					<Form.Label>Release Year:</Form.Label>
 					<Form.Control as="select" onChange={onChangeYear}>
 						<option>Сhoose year:</option>
-						{years.map((item) => (
-							<option key={item} value={item}>
-								{item}
-							</option>
-						))}
+						{years}
 					</Form.Control>
 				</div>
 				<div>

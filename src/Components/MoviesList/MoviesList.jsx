@@ -16,25 +16,20 @@ export default class MoviesList extends Component {
 		} = this.props;
 
 		return (
-			<>
-				{/* <Row className="mb-4">
-					<Col xs={12}><MovieTabs sort_by={sort_by} updateSortBy={updateSortBy} /></Col>
-				</Row> */}
-				<Row>
-					{movies.map((movie) => {
-						return (
-							<Col xs={6} md={6} lg={4} className="card mb-4" key={movie.id}>
-								<MovieItem
-									movie={movie}
-									removeMovie={removeMovie}
-									addMovieToWillWatch={addMovieToWillWatch}
-									removeMovieToWillWatch={removeMovieToWillWatch}
-								/>
-							</Col>
-						);
-					})}
-				</Row>
-			</>
+			<Row>
+				{movies.map((movie) => {
+					return (
+						<Col xs={6} md={6} lg={4} className="card mb-4" key={movie.id}>
+							<MovieItem
+								movie={movie}
+								removeMovie={removeMovie}
+								addMovieToWillWatch={addMovieToWillWatch}
+								removeMovieToWillWatch={removeMovieToWillWatch}
+							/>
+						</Col>
+					);
+				})}
+			</Row>
 		);
 	}
 }

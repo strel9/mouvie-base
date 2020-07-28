@@ -2,16 +2,14 @@ import React from 'react';
 import '../styles.css';
 
 import Header from './Header/Header';
-import MoviesBody from './MoviesBody/MoviesBody';
+import Home from '../pages/Home';
 
-class App extends React.Component {
-	render() {
-		return (
-			<>
-				<Header />
-				<MoviesBody />
-			</>
-		);
-	}
-}
+const App = () => {
+	return (
+		<>
+			<Header />
+			<Home />
+		</>
+	);
+};
 export default App;
