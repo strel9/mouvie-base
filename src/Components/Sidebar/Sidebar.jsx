@@ -1,23 +1,37 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { Col, Form, Button, Pagination, Image } from 'react-bootstrap';
+import { Form, Button, Image } from 'react-bootstrap'; //Pagination,
 
+import {
+	// setSortBy,
+	setTotalPages,
+	setCurrentPage,
+	setMoviesGenre,
+	setMoviesGenreActive,
+	setSortByPrimaryReleaseYear,
+} from '../../redux/actions/filters';
 // import PropTypes from 'prop-types';
 // import classNames from 'classnames'
 
 const Sidebar = ({
-	moviesWillWatch,
-	moviesGenre,
-	moviesGenreActive,
-	currentPage,
-	totalPages,
-	addMoviesGenre,
-	removeMoviesGenre,
+	// moviesWillWatch,
+	// moviesGenre,
+	// moviesGenreActive,
+	// currentPage,
+	// totalPages,
+	// addMoviesGenre,
+	// removeMoviesGenre,
 	onChangeSortBy,
 	onChangeYear,
-	paginationIncrease,
-	paginationDecrease,
+	// paginationIncrease,
+	// paginationDecrease,
 }) => {
+	const dispatch = useDispatch();
+
+	const { moviesGenre, moviesGenreActive, totalPages, currentPage } = useSelector(
+		({ filters }) => filters,
+	);
 	const arrSortBy = [
 		{ id: 'popularity.desc', name: 'Popularity ↓' },
 		{ id: 'popularity.asc', name: 'Popularity ↑' },
@@ -44,6 +58,28 @@ const Sidebar = ({
 		</option>
 	));
 
+	const addMoviesGenre = (id) => {
+		const updateCurrentGenre = [...moviesGenreActive, id];
+		dispatch(setMoviesGenreActive(updateCurrentGenre));
+		dispatch(setCurrentPage(1));
+	};
+
+	const removeMoviesGenre = (id) => {
+		const updateCurrentGenre = moviesGenreActive.filter((item) => item !== id);
+		dispatch(setMoviesGenreActive(updateCurrentGenre));
+	};
+
+	const paginationIncrease = () => {
+		const updateCurrentPage = currentPage + 1;
+		dispatch(setCurrentPage(updateCurrentPage));
+	};
+
+	const paginationDecrease = () => {
+		if (currentPage >= 2) {
+			const updateCurrentPage = currentPage - 1;
+			dispatch(setCurrentPage(updateCurrentPage));
+		}
+	};
 	return (
 		<div className="card">
 			<h3 className="card-top">Filters</h3>
@@ -107,7 +143,8 @@ const Sidebar = ({
 					</div>
 				</div>
 			</Form>
-			<div className="card">
+
+			{/* <div className="card">
 				<div>Will watch: {moviesWillWatch.length}</div>
 				{moviesWillWatch.map((item) => (
 					<>
@@ -121,7 +158,7 @@ const Sidebar = ({
 						</div>
 					</>
 				))}
-			</div>
+			</div> */}
 		</div>
 	);
 };

@@ -1,90 +1,115 @@
-import React, { Component } from 'react';
-import { Row, Col, Button, ToggleButton } from 'react-bootstrap';
+import React from 'react';
+import { useState } from 'react';
+
+import { Row, Col, Button } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import Image from '../image/Image';
 import imgNoFotoIdDb from '../../assets/images/no_foto.jpg';
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-
 import './MovieItem.css';
+
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setMoviesWillWatch } from '../../redux/actions/filters';
+
+// import { useSelector } from 'react-redux';
 
 // import PropTypes from 'prop-types';
 
-export default class MovieItem extends Component {
-	state = {
-		willWatch: false,
+const MovieItem = ({ movie }) => {
+	const dispatch = useDispatch();
+	const [willWatch, setWillWatch] = useState(false);
+	// state = {
+	// 	willWatch: false,
+	// };
+	// const movies = useSelector((state) => state.movies);
+	// const moviesWillWatch = useSelector(({ filters }) => filters.moviesWillWatch);
+
+	const addMovieToWillWatch = (movie) => {
+		const updateMoviesWillWatch = [...moviesWillWatch, movie.id];
+		dispatch(setMoviesWillWatch(updateMoviesWillWatch));
 	};
 
-	render() {
-		const { movie, removeMovie, addMovieToWillWatch, removeMovieToWillWatch } = this.props;
-		const cardImage = movie.poster_path ? (
-			<>
-				<Image
-					className="card-img-top"
-					src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-					alt="card-img"
-				/>
-			</>
-		) : (
-			<Image className="card-img-top" src={imgNoFotoIdDb} alt="card-img" />
-		);
+	const removeMovieToWillWatch = (movie) => {
+		const updateMoviesWillWatch = moviesWillWatch.filter((item) => item.id !== movie.id);
+		// setMoviesWillWatch(updateMoviesWillWatch);
+	};
 
-		const buttonLike = this.state.willWatch ? (
-			<Button
-				className="card-item__like"
-				variant="danger"
-				onClick={() => {
-					this.setState({
-						willWatch: false,
-					});
-					removeMovieToWillWatch(movie);
-				}}>
-				<FontAwesome className="" name="heart" size="1x" style={{ color: 'rgb(27, 105, 217)' }} />
-			</Button>
-		) : (
-			<Button
-				className="card-item__like"
-				variant="light"
-				onClick={() => {
-					this.setState({
-						willWatch: true,
-					});
-					addMovieToWillWatch(movie);
-				}}>
-				<FontAwesome className="" name="heart" size="1x" style={{ color: 'rgb(27, 105, 217)' }} />
-			</Button>
-		);
+	const moviesWillWatch = useSelector(({ filters }) => filters.moviesWillWatch);
 
-		const buttonTrash = (
-			<Button className="btn btn-light" onClick={removeMovie.bind(null, movie)}>
-				<FontAwesome className="" name="trash" size="1x" style={{ color: 'rgb(27, 105, 217)' }} />{' '}
-			</Button>
-		);
+	// const  = this.props;
+	const cardImage = movie.poster_path ? (
+		<>
+			<Image
+				className="card-img-top"
+				src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+				alt="card-img"
+			/>
+		</>
+	) : (
+		<Image className="card-img-top" src={imgNoFotoIdDb} alt="card-img" />
+	);
 
-		return (
-			<Row className="card-item-relative">
-				<Col xs={12} lg={12} className="">
-					{cardImage}
-					<div>
-						<h5 className="card-title pt-2">{movie.title}</h5>
+	const buttonLike = willWatch ? (
+		<Button
+			className="card-item__like"
+			variant="danger"
+			onClick={() => {
+				setWillWatch(false);
+				// this.setState({
+				// 	willWatch: ,
+				// });
+				removeMovieToWillWatch(movie);
+			}}>
+			<FontAwesome className="" name="heart" size="1x" style={{ color: 'rgb(27, 105, 217)' }} />
+		</Button>
+	) : (
+		<Button
+			className="card-item__like"
+			variant="light"
+			onClick={() => {
+				setWillWatch(true);
+				// this.setState({
+				// 	willWatch: ,
+				// });
+				addMovieToWillWatch(movie);
+			}}>
+			<FontAwesome className="" name="heart" size="1x" style={{ color: 'rgb(27, 105, 217)' }} />
+		</Button>
+	);
 
-						<div className="card__progressbar" style={{ width: 50, height: 50 }}>
-							<CircularProgressbar
-								value={movie.vote_average * 10}
-								text={`${movie.vote_average * 10}%`}
-								strokeWidth={7}
-								styles={buildStyles({
-									textColor: '#1B69D9',
-									pathColor: '#1B69D9',
-									trailColor: '',
-								})}
-							/>
-						</div>
-						{buttonLike}
+	// const buttonTrash = (
+	// 	<Button className="btn btn-light" onClick={removeMovie.bind(null, movie)}>
+	// 		<FontAwesome className="" name="trash" size="1x" style={{ color: 'rgb(27, 105, 217)' }} />{' '}
+	// 	</Button>
+	// );
+
+	return (
+		<Row className="card-item-relative">
+			<Col xs={12} lg={12} className="">
+				{cardImage}
+				<div>
+					<h5 className="card-title pt-2">{movie.title}</h5>
+
+					<div className="card__progressbar" style={{ width: 50, height: 50 }}>
+						<CircularProgressbar
+							value={movie.vote_average * 10}
+							text={`${movie.vote_average * 10}%`}
+							strokeWidth={7}
+							styles={buildStyles({
+								textColor: '#1B69D9',
+								pathColor: '#1B69D9',
+								trailColor: '',
+							})}
+						/>
 					</div>
-				</Col>
-			</Row>
-		);
-	}
-}
+					{buttonLike}
+				</div>
+			</Col>
+		</Row>
+	);
+};
+
+export default MovieItem;
