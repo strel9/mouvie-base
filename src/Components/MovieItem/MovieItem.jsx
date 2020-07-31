@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Row, Col, Button } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
@@ -14,7 +15,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setMoviesWillWatch } from '../../redux/actions/filters';
 
-// import { useSelector } from 'react-redux';
+import { setSelectedMovieObj } from '../../redux/actions/movies';
 
 // import PropTypes from 'prop-types';
 
@@ -24,6 +25,7 @@ const MovieItem = ({ movie }) => {
 	// state = {
 	// 	willWatch: false,
 	// };
+
 	// const movies = useSelector((state) => state.movies);
 	// const moviesWillWatch = useSelector(({ filters }) => filters.moviesWillWatch);
 
@@ -89,7 +91,17 @@ const MovieItem = ({ movie }) => {
 	return (
 		<Row className="card-item-relative">
 			<Col xs={12} lg={12} className="">
-				{cardImage}
+				<Link
+					to={`/movie-base/movie-page/`}
+					onClick={() => {
+						dispatch(setSelectedMovieObj(movie));
+					}}>
+					{cardImage}
+				</Link>
+				{/* <Link className="" to={`/movie/${movie.id}/details`}>
+						Подробнее
+					</Link> */}
+
 				<div>
 					<h5 className="card-title pt-2">{movie.title}</h5>
 

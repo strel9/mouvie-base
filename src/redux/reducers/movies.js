@@ -1,6 +1,7 @@
 const initialState = {
 	items: [],
 	isLoaded: false,
+	selectedMovieObj: {},
 };
 
 const movies = (state = initialState, action) => {
@@ -10,6 +11,13 @@ const movies = (state = initialState, action) => {
 			return {
 				...state,
 				items: action.payload,
+			};
+
+		case 'SET_SELECTED_MOVIE_OBJ':
+			// console.log(state);
+			return {
+				...state,
+				selectedMovieObj: action.payload,
 			};
 		// console.log(state);
 

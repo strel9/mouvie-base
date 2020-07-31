@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { API_URL, API_KEY_3 } from '../utils/api';
+import { API_URL, API_KEY_3 } from '../../utils/api';
 
-import Sidebar from '../Components/Sidebar/Sidebar';
-import MoviesList from '../Components/MoviesList/MoviesList';
+import Sidebar from '../../Components/Sidebar/Sidebar';
+import MoviesList from '../../Components/MoviesList/MoviesList';
 
 import { Col, Row, Container } from 'react-bootstrap';
 
@@ -14,10 +14,10 @@ import {
 	setMoviesGenre,
 	setSortByPrimaryReleaseYear,
 	// setMoviesGenreActive,
-} from '../redux/actions/filters';
-import { setMovies } from '../redux/actions/movies';
+} from '../../redux/actions/filters';
+import { setMovies } from '../../redux/actions/movies';
 
-function Home() {
+const Home = () => {
 	// state = {
 	// 	movies: [],
 	// 	moviesGenre: [],
@@ -62,7 +62,7 @@ function Home() {
 		fetch(`${API_URL}genre/movie/list?api_key=${API_KEY_3}`)
 			.then((response) => response.json())
 			.then((data) => dispatch(setMoviesGenre(data.genres)));
-			// .then((data) => console.log(data.genres));
+		// .then((data) => console.log(data.genres));
 	}, [sortBy, currentPage, sortByPrimaryReleaseYear, moviesGenreActive, moviesGenre]);
 
 	// componentDidMount() {
@@ -143,6 +143,6 @@ function Home() {
 			</Row>
 		</Container>
 	);
-}
+};
 
 export default Home;

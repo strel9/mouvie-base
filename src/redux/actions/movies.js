@@ -3,3 +3,8 @@ export const setMovies = (movies) => ({
 	payload: movies,
 });
 
+export const setSelectedMovieObj = (movie) => ({
+	type: 'SET_SELECTED_MOVIE_OBJ',
+	payload: movie,
+});
+
