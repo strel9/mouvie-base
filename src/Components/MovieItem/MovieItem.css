@@ -6,7 +6,7 @@
 	text-overflow: ellipsis;
 }
 
-.card {
+.movies-list .card {
 	cursor: pointer;
 	/* box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.5); */
 }

@@ -82,9 +82,9 @@ const Sidebar = ({
 	};
 	return (
 		<div className="card">
-			<h3 className="card-top">Filters</h3>
-			<Form className="">
-				<div>
+			<Form className="p-2">
+				<h3 className="card-top">Filters</h3>
+				<div className="pb-3">
 					<Form.Label>Sort By:</Form.Label>
 					<Form.Control as="select" onChange={onChangeSortBy}>
 						{arrSortBy.map((item) => (
@@ -94,17 +94,17 @@ const Sidebar = ({
 						))}
 					</Form.Control>
 				</div>
-				<div>
-					<Form.Label>Release Year:</Form.Label>
+				<div className="pb-3">
+					<Form.Label className="">Release Year:</Form.Label>
 					<Form.Control as="select" onChange={onChangeYear}>
 						<option>Сhoose year:</option>
 						{years}
 					</Form.Control>
 				</div>
-				<div>
+				<div className="pb-3">
 					<Form.Label>Сhoose genre:</Form.Label>
 					<div className="d-flex">
-						<div>
+						<div className="">
 							{moviesGenre.map(({ name, id }) => {
 								const isActive = moviesGenreActive.indexOf(id) !== -1;
 
@@ -125,22 +125,20 @@ const Sidebar = ({
 
 				{/* <Button variant="primary">Clear filter</Button> */}
 
-				<div className="pagination">
-					<div className="btn-group d-flex align-items-center">
-						<Button variant="primary" onClick={() => paginationDecrease()}>
-							Back
-						</Button>
+				<div className="pagination btn-group d-flex align-items-center pt-1">
+					<Button variant="primary" onClick={() => paginationDecrease()}>
+						Back
+					</Button>
 
-						<div>{`${currentPage} из ${totalPages}`}</div>
+					<div className="p-2">{`${currentPage} из ${totalPages}`}</div>
 
-						<Button
-							variant="primary"
-							onClick={() => {
-								paginationIncrease();
-							}}>
-							Forward
-						</Button>
-					</div>
+					<Button
+						variant="primary"
+						onClick={() => {
+							paginationIncrease();
+						}}>
+						Forward
+					</Button>
 				</div>
 			</Form>
 
