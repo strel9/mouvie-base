@@ -13,7 +13,7 @@ const initialState = {
 	sortByPrimaryReleaseYear: null,
 	moviesWillWatch: [716333, 578013, 654210],
 	currentPage: 1,
-	totalPages: null,
+	totalPages: 0,
 };
 
 const filters = (state = initialState, action) => {

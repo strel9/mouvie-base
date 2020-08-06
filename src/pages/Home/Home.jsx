@@ -115,7 +115,7 @@ const Home = () => {
 	return (
 		<Container>
 			{/* {console.log(this.state.movies)} */}
-			<Row>
+			<Row className="pt-2">
 				<Col xs={12} sm={12} md={3} lg={3}>
 					<Sidebar
 						// currentPage={currentPage}

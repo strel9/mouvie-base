@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Navbar } from 'react-bootstrap';
 
+import './Header.css';
+
 import Image from '../image/Image';
 // import Button from '../button/Button';
 // import Input from '../input/Input';

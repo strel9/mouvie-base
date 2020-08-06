@@ -17,10 +17,10 @@ const MoviesList = ({ removeMovie }) => {
 	// debugger;
 
 	return (
-		<Row>
+		<Row className="movies-list">
 			{movieItems.map((movie) => {
 				return (
-					<Col xs={6} md={6} lg={4} className="card mb-4" key={movie.id}>
+					<Col xs={6} md={6} lg={4} className="mb-4" key={movie.id}>
 						<MovieItem
 						movie={movie}
 						// removeMovie={removeMovie}
