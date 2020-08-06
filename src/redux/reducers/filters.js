@@ -8,6 +8,7 @@ const initialState = {
 		{ id: 80, name: 'Crime' },
 		{ id: 99, name: 'Documentary' },
 		{ id: 18, name: 'Drama' },
+fa		{ id: 10751, name: 'Family' },
 	],
 	moviesGenreActive: [],
 	sortByPrimaryReleaseYear: null,
