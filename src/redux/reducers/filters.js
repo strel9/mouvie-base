@@ -12,7 +12,7 @@ const initialState = {
 	],
 	moviesGenreActive: [],
 	sortByPrimaryReleaseYear: null,
-	moviesWillWatch: [716333, 578013, 654210],
+	moviesWillWatch: [583083],
 	currentPage: 1,
 	totalPages: 0,
 };

@@ -1,22 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { Col, Row, Container, Tabs, Tab, Sonnet } from 'react-bootstrap';
 
 import Tab1 from '../../Components/Tab1/Tab1';
 import Image from '../../Components/image/Image';
-import { Col, Row, Container, Tabs, Tab, Sonnet } from 'react-bootstrap';
+import LikeButton from '../../Components/LikeButton/LikeButton';
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-import { useSelector, useDispatch } from 'react-redux';
-
-import './MoviePage.css';
-
 const MoviePage = () => {
 	const movie = useSelector(({ movies }) => movies.selectedMovieObj);
-	console.log(movie);
+	console.log(movie.vote_average);
 	return (
 		<Container>
-			<Row>
+			<Row className="movie-page">
 				<Col xs={12} sm={12} md={3} lg={3}>
 					<Image
 						className="movie-page__img"
@@ -27,18 +25,26 @@ const MoviePage = () => {
 				<Col xs={12} sm={12} md={9} lg={9}>
 					<h2>{movie.title}</h2>
 					<div className="d-flex">
-						<CircularProgressbar
-							className="circular-progressbar__card"
-							value={movie.vote_average * 10}
-							text={`${movie.vote_average * 10}%`}
-							strokeWidth={7}
-							styles={buildStyles({
-								textColor: '#1B69D9',
-								pathColor: '#1B69D9',
-								trailColor: '',
-							})}
-						/>
-						<div>лайк компонент</div>
+						<div className="movie-page__progressbar" style={{ width: 50, height: 50 }}>
+							<CircularProgressbar
+								className=""
+								background
+								backgroundPadding={6}
+								value={movie.vote_average * 10}
+								text={`${movie.vote_average * 10}%`}
+								strokeWidth={9}
+								styles={buildStyles({
+									backgroundColor: '#FFFFFF',
+									textColor: '#1B69D9',
+									// textSize: '25',
+									pathColor: '#1B69D9',
+									trailColor: '',
+								})}
+							/>
+						</div>
+						<div>
+							<LikeButton className="" movie={movie} />
+						</div>
 					</div>
 					<p>{movie.overview}</p>
 				</Col>

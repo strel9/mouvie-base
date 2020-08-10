@@ -7,6 +7,7 @@ import Sidebar from '../../Components/Sidebar/Sidebar';
 import MoviesList from '../../Components/MoviesList/MoviesList';
 
 import { Col, Row, Container } from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
 
 import {
 	setSortBy,
@@ -15,7 +16,7 @@ import {
 	setSortByPrimaryReleaseYear,
 	// setMoviesGenreActive,
 } from '../../redux/actions/filters';
-import { setMovies } from '../../redux/actions/movies';
+import { setMovies, setLoaded } from '../../redux/actions/movies';
 
 const Home = () => {
 	// state = {
@@ -38,6 +39,7 @@ const Home = () => {
 		sortByPrimaryReleaseYear,
 		moviesGenreActive,
 	} = useSelector(({ filters }) => filters);
+	const loading = useSelector(({ movies }) => movies.isLoaded);
 	// const [sortBy, setSortBy] = React.useState('popularity.desc');
 	// const [moviesGenre, setMoviesGenre] = React.useState([]);
 	// const [moviesWillWatch, setMoviesWillWatch] = React.useState([]);
@@ -54,6 +56,7 @@ const Home = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				// console.log(data.results);
+				dispatch(setLoaded(data.isLoaded));
 				dispatch(setMovies(data.results));
 				dispatch(setTotalPages(data.total_pages));
 				// setTotalPages(data.total_pages);
@@ -114,7 +117,6 @@ const Home = () => {
 
 	return (
 		<Container>
-			{/* {console.log(this.state.movies)} */}
 			<Row className="pt-2">
 				<Col xs={12} sm={12} md={3} lg={3}>
 					<Sidebar
@@ -133,12 +135,16 @@ const Home = () => {
 				</Col>
 
 				<Col xs={12} sm={12} md={9} lg={9}>
-					<MoviesList
-					// movies={movies}
-					// removeMovie={removeMovie}
-					// addMovieToWillWatch={addMovieToWillWatch}
-					// removeMovieToWillWatch={removeMovieToWillWatch}
-					/>
+					{loading ? (
+						<Spinner animation="border" variant="primary" />
+					) : (
+						<MoviesList
+						// movies={movies}
+						// removeMovie={removeMovie}
+						// addMovieToWillWatch={addMovieToWillWatch}
+						// removeMovieToWillWatch={removeMovieToWillWatch}
+						/>
+					)}
 				</Col>
 			</Row>
 		</Container>

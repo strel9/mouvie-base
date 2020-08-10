@@ -5,6 +5,8 @@ import Header from './Header/Header';
 import Home from '../pages/Home/Home';
 import MoviePage from '../pages/MoviePage/MoviePage';
 
+import './App.css';
+
 const App = () => {
 	return (
 		<>

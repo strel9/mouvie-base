@@ -1,11 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import { Row, Col, Button } from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
-import Image from '../image/Image';
-import imgNoFotoIdDb from '../../assets/images/no_foto.jpg';
+import { useSelector, useDispatch } from 'react-redux';
+import { Row, Col } from 'react-bootstrap';
+import LikeButton from '../LikeButton/LikeButton';
 
 // Import react-circular-progressbar module and styles
 import {
@@ -14,25 +11,20 @@ import {
 	buildStyles,
 } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-
 // Animation
 // import { easeQuadInOut } from 'd3-ease';
 // import AnimatedProgressProvider from './AnimatedProgressProvider';
 // import ChangingProgressProvider from './ChangingProgressProvider';
 
-import './MovieItem.css';
-
-import { useSelector, useDispatch } from 'react-redux';
-
 import { setMoviesWillWatch } from '../../redux/actions/filters';
-
 import { setSelectedMovieObj } from '../../redux/actions/movies';
 
-// import PropTypes from 'prop-types';
+import Image from '../image/Image';
+import imgNoFotoIdDb from '../../assets/images/no_foto.jpg';
 
 const MovieItem = ({ movie }) => {
 	const dispatch = useDispatch();
-	const [willWatch, setWillWatch] = useState(false);
+	// const [willWatch, setWillWatch] = useState(false);
 	// state = {
 	// 	willWatch: false,
 	// };
@@ -65,34 +57,6 @@ const MovieItem = ({ movie }) => {
 		<Image className="card-img-top" src={imgNoFotoIdDb} alt="card-img" />
 	);
 
-	const buttonLike = willWatch ? (
-		<button
-			className="card-item__like-btn --active"
-			// variant="danger"
-			onClick={() => {
-				setWillWatch(false);
-				// this.setState({
-				// 	willWatch: ,
-				// });
-				removeMovieToWillWatch(movie);
-			}}>
-			<FontAwesome className="" name="heart" size="1x" style={{ color: 'rgb(27, 105, 217)' }} />
-		</button>
-	) : (
-		<button
-			className="card-item__like-btn"
-			// variant="light"
-			onClick={() => {
-				setWillWatch(true);
-				// this.setState({
-				// 	willWatch: ,
-				// });
-				addMovieToWillWatch(movie);
-			}}>
-			<FontAwesome className="" name="heart" size="1x" style={{ color: 'rgb(27, 105, 217)' }} />
-		</button>
-	);
-
 	// const buttonTrash = (
 	// 	<Button className="btn btn-light" onClick={removeMovie.bind(null, movie)}>
 	// 		<FontAwesome className="" name="trash" size="1x" style={{ color: 'rgb(27, 105, 217)' }} />{' '}
@@ -115,11 +79,11 @@ const MovieItem = ({ movie }) => {
 					</Link> */}
 
 					<div>
-						<h5 className="card-title pt-2">{movie.title}</h5>
+						<h5 className="card-title mt-2">{movie.title}</h5>
 
 						<div className="card__progressbar" style={{ width: 50, height: 50 }}>
 							<CircularProgressbar
-								className="CircularProgressbar"
+								className=""
 								background
 								backgroundPadding={6}
 								value={movie.vote_average * 10}
@@ -134,7 +98,9 @@ const MovieItem = ({ movie }) => {
 								})}
 							/>
 						</div>
-						{buttonLike}
+						<div className="card__like-btn">
+							<LikeButton movie={movie} />
+						</div>
 					</div>
 				</Col>
 			</Row>

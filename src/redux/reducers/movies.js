@@ -1,6 +1,6 @@
 const initialState = {
 	items: [],
-	isLoaded: false,
+	isLoaded: true,
 	selectedMovieObj: {},
 };
 
@@ -11,6 +11,13 @@ const movies = (state = initialState, action) => {
 			return {
 				...state,
 				items: action.payload,
+				isLoaded: false,
+			};
+
+		case 'SET_LOADED':
+			return {
+				...state,
+				isLoaded: action.payload,
 			};
 
 		case 'SET_SELECTED_MOVIE_OBJ':

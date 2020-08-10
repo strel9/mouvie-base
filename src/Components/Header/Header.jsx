@@ -1,8 +1,6 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
-
-import './Header.css';
 
 import Image from '../image/Image';
 // import Button from '../button/Button';
@@ -16,9 +14,9 @@ const Header = () => {
 			<div className="container">
 				<Navbar className="navbar d-flex justify-content-between align-items-center">
 					{/* <div>лого</div> */}
-					<a className="navbar-item d-flex" href="/movie-base/">
+					<Link className="navbar-item d-flex" to="/movie-base/">
 						<Image src={logo} alt="logo" width={80} height={80} />
-					</a>
+					</Link>
 					{/* <div className="d-flex align-items-center">
 						<Input type="text" placeholder="поиск" id={'1'}></Input>
 						<div>Логин пользователя</div>
