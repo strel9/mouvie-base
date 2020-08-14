@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { API_URL, API_KEY_3 } from '../../utils/api';
+import { API_URL, API_KEY_3 } from '../utils/api';
 
-import Sidebar from '../../Components/Sidebar/Sidebar';
-import MoviesList from '../../Components/MoviesList/MoviesList';
+import Sidebar from '../Components/Sidebar/Sidebar';
+import MoviesList from '../Components/MoviesList/MoviesList';
 
 import { Col, Row, Container } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
@@ -15,8 +15,8 @@ import {
 	setMoviesGenre,
 	setSortByPrimaryReleaseYear,
 	// setMoviesGenreActive,
-} from '../../redux/actions/filters';
-import { setMovies, setLoaded } from '../../redux/actions/movies';
+} from '../redux/actions/filters';
+import { setMovies, setLoaded } from '../redux/actions/movies';
 
 const Home = () => {
 	// state = {

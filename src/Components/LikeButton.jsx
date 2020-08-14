@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import FontAwesome from 'react-fontawesome';
 
-import { setMoviesWillWatch } from '../../redux/actions/filters';
+import { setMoviesWillWatch } from '../redux/actions/filters';
 
 // const like =
 // );
@@ -52,7 +52,7 @@ const LikeButton = ({ movie }) => {
 			<FontAwesome
 				className="like-btn__icon"
 				name="heart"
-				size="1x"
+				// size="2x"
 				style={{ color: 'rgb(27, 105, 217)' }}
 			/>
 		</button>
@@ -70,7 +70,7 @@ const LikeButton = ({ movie }) => {
 			<FontAwesome
 				className="like-btn__icon"
 				name="heart"
-				size="1x"
+				// size="2x"
 				style={{ color: 'rgb(27, 105, 217)' }}
 			/>
 		</button>

@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
 
-import Image from '../image/Image';
+import Image from './image/Image';
 // import Button from '../button/Button';
 // import Input from '../input/Input';
 
-import logo from '../../assets/images/logo.svg';
+import logo from '../assets/images/logo.svg';
 
 const Header = () => {
 	return (

@@ -8,7 +8,9 @@
 	width: 5rem;
 	height: 5rem;
 }
-
+.movie-page__wrapper {
+	/* background-image: url(); */
+}
 .movie-page__img {
 	width: 100%;
 }

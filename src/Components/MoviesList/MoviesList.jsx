@@ -1,12 +1,12 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // import PropTypes from 'prop-types';
 import { Col, Row } from 'react-bootstrap';
 
-import MovieItem from '../MovieItem/MovieItem';
+import MovieItem from '../MovieItem';
 
-import { setMoviesWillWatch } from '../../redux/actions/filters';
+// import { setMoviesWillWatch } from '../../redux/actions/filters';
 
 // import MovieTabs from './MovieTabs'
 const MoviesList = ({ removeMovie }) => {

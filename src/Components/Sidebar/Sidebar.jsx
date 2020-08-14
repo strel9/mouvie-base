@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Form, Button, Image } from 'react-bootstrap'; //Pagination,
+import { Form, Button} from 'react-bootstrap';
+import Pagination from 'react-bootstrap/Pagination';
 
 import {
 	// setSortBy,
@@ -80,6 +81,7 @@ const Sidebar = ({
 			dispatch(setCurrentPage(updateCurrentPage));
 		}
 	};
+
 	return (
 		<div className="card">
 			<Form className="p-2">
@@ -140,8 +142,25 @@ const Sidebar = ({
 						Forward
 					</Button>
 				</div>
+				{/* <Pagination>
+					<Pagination.Prev onClick={() => paginationDecrease()} />
+					<Pagination.Item active>{currentPage}</Pagination.Item>
+					<Pagination.Item onClick={() => dispatch(setCurrentPage(currentPage + 1))}>
+						{currentPage + 1}
+					</Pagination.Item>
+					<Pagination.Item onClick={() => dispatch(setCurrentPage(currentPage + 2))}>
+						{currentPage + 2}
+					</Pagination.Item>
+					<Pagination.Ellipsis />
+					<Pagination.Item onClick={() => dispatch(setCurrentPage(currentPage + 10))}>
+						{currentPage + 10}
+					</Pagination.Item>
+					<Pagination.Next
+						onClick={() => {
+							paginationIncrease();
+						}}></Pagination.Next>
+				</Pagination> */}
 			</Form>
-
 			{/* <div className="card">
 				<div>Will watch: {moviesWillWatch.length}</div>
 				{moviesWillWatch.map((item) => (

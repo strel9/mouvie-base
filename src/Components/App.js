@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import Header from './Header/Header';
-import Home from '../pages/Home/Home';
+import Header from './Header';
+import Home from '../pages/Home';
 import MoviePage from '../pages/MoviePage/MoviePage';
 
 import './App.css';

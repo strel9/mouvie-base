@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
-import LikeButton from '../LikeButton/LikeButton';
+import LikeButton from './LikeButton';
 
 // Import react-circular-progressbar module and styles
 import {
@@ -16,11 +16,11 @@ import 'react-circular-progressbar/dist/styles.css';
 // import AnimatedProgressProvider from './AnimatedProgressProvider';
 // import ChangingProgressProvider from './ChangingProgressProvider';
 
-import { setMoviesWillWatch } from '../../redux/actions/filters';
-import { setSelectedMovieObj } from '../../redux/actions/movies';
+// import { setMoviesWillWatch } from '../../redux/actions/filters';
+import { setSelectedMovieObj } from '../redux/actions/movies';
 
-import Image from '../image/Image';
-import imgNoFotoIdDb from '../../assets/images/no_foto.jpg';
+import Image from './image/Image';
+import imgNoFotoIdDb from '../assets/images/no_foto.jpg';
 
 const MovieItem = ({ movie }) => {
 	const dispatch = useDispatch();
@@ -32,17 +32,17 @@ const MovieItem = ({ movie }) => {
 	// const movies = useSelector((state) => state.movies);
 	// const moviesWillWatch = useSelector(({ filters }) => filters.moviesWillWatch);
 
-	const addMovieToWillWatch = (movie) => {
-		const updateMoviesWillWatch = [...moviesWillWatch, movie.id];
-		dispatch(setMoviesWillWatch(updateMoviesWillWatch));
-	};
+	// const addMovieToWillWatch = (movie) => {
+	// 	const updateMoviesWillWatch = [...moviesWillWatch, movie.id];
+	// 	dispatch(setMoviesWillWatch(updateMoviesWillWatch));
+	// };
 
-	const removeMovieToWillWatch = (movie) => {
-		const updateMoviesWillWatch = moviesWillWatch.filter((item) => item.id !== movie.id);
-		// setMoviesWillWatch(updateMoviesWillWatch);
-	};
+	// const removeMovieToWillWatch = (movie) => {
+	// 	const updateMoviesWillWatch = moviesWillWatch.filter((item) => item.id !== movie.id);
+	// 	// setMoviesWillWatch(updateMoviesWillWatch);
+	// };
 
-	const moviesWillWatch = useSelector(({ filters }) => filters.moviesWillWatch);
+	// const moviesWillWatch = useSelector(({ filters }) => filters.moviesWillWatch);
 
 	// const  = this.props;
 	const cardImage = movie.poster_path ? (
