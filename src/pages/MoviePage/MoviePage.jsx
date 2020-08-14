@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+
 import { API_URL, API_KEY_3 } from '../../utils/api';
 
 import { Col, Row, Container, Tabs, Tab, Sonnet } from 'react-bootstrap';
@@ -10,47 +10,23 @@ import LikeButton from '../../Components/LikeButton';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const MoviePage = () => {
-	const movie = useSelector(({ movies }) => movies.selectedMovieObj);
-	// console.log(movie.id);
+const MoviePage = ({ movieId }) => {
+	// const [moviePosters, setMoviePoster1] = useState('');
+	const [movieTrailers, setMovieTrailer] = useState('');
+	const [movie, setMovie] = useState({});
+	// console.log(movie.poster_path);
+	// console.log(movie.backdrop_path);
+	// console.log(`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`);
 
 	useEffect(() => {
-		// getMovie();
-
-		fetch(
-			`${API_URL}movie/${movie.id}/images?api_key=${API_KEY_3}`,
-			// `${API_URL}discover/movie?api_key=${API_KEY_3}&sort_by=${sortBy}&page=${currentPage}&with_genres=${moviesGenreActive}&primary_release_year=${sortByPrimaryReleaseYear}`,
-		)
+		fetch(`${API_URL}movie/${movieId}?api_key=${API_KEY_3}`)
 			.then((response) => response.json())
+			.then((data) => setMovie(data));
 
-			// .then((data) => console.log(`https://image.tmdb.org/t/p/w500${data.backdrops[0].file_path}`));
-			.then((data) => {
-				setMoviePoster1(data.backdrops[0].file_path);
-				setMoviePoster2(data.backdrops[1].file_path);
-			});
-	}, []);
-
-	useEffect(() => {
-		// getMovie();
-
-		fetch(
-			`${API_URL}movie/${movie.id}/videos?api_key=${API_KEY_3}`,
-			// https://api.themoviedb.org/3/find/{external_id}?api_key=<<api_key>>&language=en-US&external_source=imdb_id
-			// `${API_URL}find/${movie.id}?api_key=${API_KEY_3}`,
-			// `${API_URL}discover/movie?api_key=${API_KEY_3}&sort_by=${sortBy}&page=${currentPage}&with_genres=${moviesGenreActive}&primary_release_year=${sortByPrimaryReleaseYear}`,
-		)
+		fetch(`${API_URL}movie/${movieId}/videos?api_key=${API_KEY_3}`)
 			.then((response) => response.json())
-			// .then((data) => console.log(data.results[0].key));
 			.then((data) => setMovieTrailer(data.results[0].key));
-		// .then((data) => {
-		// 	setMoviePoster1(data.backdrops[0].file_path);
-		// 	setMoviePoster2(data.backdrops[1].file_path);
-		// });
-	}, []);
-	const [moviePoster1, setMoviePoster1] = useState('');
-	const [moviePoster2, setMoviePoster2] = useState('');
-	const [movieTrailer, setMovieTrailer] = useState('');
-	// console.log(movieTrailer);
+	}, [movieId]);
 
 	return (
 		<div className="movie-page__wrapper">
@@ -83,7 +59,7 @@ const MoviePage = () => {
 									})}
 								/>
 							</div>
-							<div>
+							<div className="d-flex align-items-center">
 								<LikeButton className="" movie={movie} />
 							</div>
 						</div>
@@ -103,25 +79,27 @@ const MoviePage = () => {
 							</div>
 						</Tab>
 						<Tab eventKey="trailer" title="Trailer">
-							<iframe
-								className=""
-								// name={name}
-								// title={name}
-								// key={key}
-								src={'https://www.youtube.com/embed/' + movieTrailer}></iframe>
+							{movieTrailers ? (
+								<iframe
+									className=""
+									src={`https://www.youtube.com/embed/${movieTrailers}`}></iframe>
+							) : (
+								''
+							)}
 						</Tab>
 						<Tab eventKey="posters" title="Posters">
 							<div>
-								<Image
-									className=""
-									src={`https://image.tmdb.org/t/p/w500${moviePoster1}`}
-									alt="img"
-								/>
-								<Image
-									className=""
-									src={`https://image.tmdb.org/t/p/w500${moviePoster2}`}
-									alt="img"
-								/>
+								{movie ? (
+									<>
+										<Image
+											className=""
+											src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+											alt="img"
+										/>
+									</>
+								) : (
+									''
+								)}
 							</div>
 						</Tab>
 					</Tabs>

@@ -11,7 +11,6 @@ import MovieItem from './MovieItem';
 // import MovieTabs from './MovieTabs'
 const MoviesList = ({ removeMovie }) => {
 	const movieItems = useSelector(({ movies }) => movies.items);
-
 	return (
 		<Row className="movies-list">
 			{movieItems.map((movie) => {

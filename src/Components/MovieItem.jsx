@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import LikeButton from './LikeButton';
@@ -17,12 +18,14 @@ import 'react-circular-progressbar/dist/styles.css';
 // import ChangingProgressProvider from './ChangingProgressProvider';
 
 // import { setMoviesWillWatch } from '../../redux/actions/filters';
-import { setSelectedMovieObj } from '../redux/actions/movies';
+// import { setSelectedMovieObj } from '../redux/actions/movies';
 
 import Image from './image/Image';
 import imgNoFotoIdDb from '../assets/images/no_foto.jpg';
 
-const MovieItem = ({ movie }) => {
+const MovieItem = ({ movie, history }) => {
+	console.log(history);
+
 	const dispatch = useDispatch();
 	// const [willWatch, setWillWatch] = useState(false);
 	// state = {
@@ -68,10 +71,12 @@ const MovieItem = ({ movie }) => {
 			<Row className="card-item">
 				<Col xs={12} lg={12} className="">
 					<Link
-						to={`/movie-base/movie-page/`}
-						onClick={() => {
-							dispatch(setSelectedMovieObj(movie));
-						}}>
+						to={`/movie-base/movie/${movie.id}`}
+						// onItemSelected={()}
+						// onClick={() => {
+						// 	dispatch(setSelectedMovieObj(movie));
+						// }}
+					>
 						{cardImage}
 					</Link>
 					{/* <Link className="" to={`/movie/${movie.id}/details`}>
@@ -108,4 +113,4 @@ const MovieItem = ({ movie }) => {
 	);
 };
 
-export default MovieItem;
+export default withRouter(MovieItem);

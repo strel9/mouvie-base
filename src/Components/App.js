@@ -12,8 +12,17 @@ const App = () => {
 		<>
 			<Header />
 			{/* <Home /> */}
+			{/* <Route path="/movie-base/" render={() => <h2>welcome</h2>} /> */}
 			<Route path="/movie-base/" component={Home} exact />
-			<Route path="/movie-base/movie-page/" component={MoviePage} exact />
+			{/* <Route path="/movie/" component={MoviePage} exact /> */}
+			<Route
+				path="/movie-base/movie/:id"
+				render={({ match, location, history }) => {
+					// console.log(match);
+					const { id } = match.params;
+					return <MoviePage movieId={id} />;
+				}}
+			/>
 		</>
 	);
 };
