@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 // import PropTypes from 'prop-types';
 import { Col, Row } from 'react-bootstrap';
 
-import MovieItem from '../MovieItem';
+import MovieItem from './MovieItem';
 
 // import { setMoviesWillWatch } from '../../redux/actions/filters';
 

@@ -4,7 +4,6 @@ import { API_URL, API_KEY_3 } from '../../utils/api';
 
 import { Col, Row, Container, Tabs, Tab, Sonnet } from 'react-bootstrap';
 
-import Tab1 from '../../Components/Tab1/Tab1';
 import Image from '../../Components/image/Image';
 import LikeButton from '../../Components/LikeButton';
 
@@ -94,7 +93,14 @@ const MoviePage = () => {
 				<div>
 					<Tabs defaultActiveKey="trailer" id="uncontrolled-tab-example">
 						<Tab eventKey="home" title="Details">
-							<Tab1 movie={movie} />
+							<div>
+								<span>Date of release: </span>
+								{movie.release_date}
+							</div>
+							<div>
+								<span>Original language: </span>
+								{movie.original_language}
+							</div>
 						</Tab>
 						<Tab eventKey="trailer" title="Trailer">
 							<iframe

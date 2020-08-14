@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { API_URL, API_KEY_3 } from '../utils/api';
 
-import Sidebar from '../Components/Sidebar/Sidebar';
-import MoviesList from '../Components/MoviesList/MoviesList';
+import Sidebar from '../Components/Sidebar';
+import MoviesList from '../Components/MoviesList';
 
 import { Col, Row, Container } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';

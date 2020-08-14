@@ -11,7 +11,7 @@ import {
 	setMoviesGenre,
 	setMoviesGenreActive,
 	setSortByPrimaryReleaseYear,
-} from '../../redux/actions/filters';
+} from '../redux/actions/filters';
 // import PropTypes from 'prop-types';
 // import classNames from 'classnames'
 
