@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 
 import Header from './Header';
 import Home from '../pages/Home';
-import MoviePage from '../pages/MoviePage/MoviePage';
+import MoviePage from '../pages/MoviePage';
 
 import './App.css';
 
@@ -17,8 +17,7 @@ const App = () => {
 			{/* <Route path="/movie/" component={MoviePage} exact /> */}
 			<Route
 				path="/movie-base/movie/:id"
-				render={({ match, location, history }) => {
-					// console.log(match);
+				render={({ match }) => {
 					const { id } = match.params;
 					return <MoviePage movieId={id} />;
 				}}

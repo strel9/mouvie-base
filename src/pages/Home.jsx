@@ -66,7 +66,7 @@ const Home = () => {
 			.then((response) => response.json())
 			.then((data) => dispatch(setMoviesGenre(data.genres)));
 		// .then((data) => console.log(data.genres));
-	}, [sortBy, currentPage, sortByPrimaryReleaseYear, moviesGenreActive, moviesGenre]);
+	}, [sortBy, currentPage, sortByPrimaryReleaseYear, moviesGenreActive, moviesGenre, dispatch]);
 
 	// componentDidMount() {
 	// 	getMovie();
@@ -134,7 +134,12 @@ const Home = () => {
 					/>
 				</Col>
 
-				<Col xs={12} sm={12} md={9} lg={9}>
+				<Col
+					className="d-flex justify-content-center align-items-center"
+					xs={12}
+					sm={12}
+					md={9}
+					lg={9}>
 					{loading ? (
 						<Spinner animation="border" variant="primary" />
 					) : (

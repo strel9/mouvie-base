@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
-import { API_URL, API_KEY_3 } from '../../utils/api';
+import { API_URL, API_KEY_3 } from '../utils/api';
 
-import { Col, Row, Container, Tabs, Tab, Sonnet } from 'react-bootstrap';
+import { Col, Row, Container, Tabs, Tab } from 'react-bootstrap';
 
-import Image from '../../Components/image/Image';
-import LikeButton from '../../Components/LikeButton';
+import Image from '../Components/image/Image';
+import LikeButton from '../Components/LikeButton';
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const MoviePage = ({ movieId }) => {
 	// const [moviePosters, setMoviePoster1] = useState('');
-	const [movieTrailers, setMovieTrailer] = useState('');
-	const [movie, setMovie] = useState({});
 	// console.log(movie.poster_path);
 	// console.log(movie.backdrop_path);
 	// console.log(`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`);
@@ -28,8 +26,11 @@ const MoviePage = ({ movieId }) => {
 			.then((data) => setMovieTrailer(data.results[0].key));
 	}, [movieId]);
 
+	const [movieTrailers, setMovieTrailer] = useState('');
+	const [movie, setMovie] = useState({});
+
 	return (
-		<div className="movie-page__wrapper">
+		<div className="movie-page__wrapper pt-2">
 			<Container>
 				<Row className="movie-page">
 					<Col xs={12} sm={12} md={3} lg={3}>
@@ -82,6 +83,7 @@ const MoviePage = ({ movieId }) => {
 							{movieTrailers ? (
 								<iframe
 									className=""
+									title={movieTrailers}
 									src={`https://www.youtube.com/embed/${movieTrailers}`}></iframe>
 							) : (
 								''

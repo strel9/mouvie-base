@@ -8,7 +8,3 @@ export const setLoaded = (payload) => ({
 	payload: false,
 });
 
-export const setSelectedMovieObj = (movie) => ({
-	type: 'SET_SELECTED_MOVIE_OBJ',
-	payload: movie,
-});

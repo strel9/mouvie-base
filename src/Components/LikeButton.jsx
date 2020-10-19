@@ -34,7 +34,6 @@ const LikeButton = ({ movie }) => {
 		const updateMoviesWillWatch = moviesWillWatch.filter((item) => item !== movie.id);
 		// ;
 
-		console.log(updateMoviesWillWatch);
 		dispatch(setMoviesWillWatch(updateMoviesWillWatch));
 	};
 

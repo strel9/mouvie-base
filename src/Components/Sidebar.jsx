@@ -1,16 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Form, Button} from 'react-bootstrap';
-import Pagination from 'react-bootstrap/Pagination';
+import { Form, Button } from 'react-bootstrap';
+// import Pagination from 'react-bootstrap/Pagination';
 
 import {
 	// setSortBy,
-	setTotalPages,
+	// setTotalPages,
 	setCurrentPage,
-	setMoviesGenre,
+	// setMoviesGenre,
 	setMoviesGenreActive,
-	setSortByPrimaryReleaseYear,
+	// setSortByPrimaryReleaseYear,
 } from '../redux/actions/filters';
 // import PropTypes from 'prop-types';
 // import classNames from 'classnames'
@@ -83,9 +83,10 @@ const Sidebar = ({
 	};
 
 	return (
-		<div className="card">
+		// <div className="card">
+		<div className="sidebar">
 			<Form className="p-2">
-				<h3 className="card-top">Filters</h3>
+				<h3 className="sidebar-top">Filters</h3>
 				<div className="pb-3">
 					<Form.Label>Sort By:</Form.Label>
 					<Form.Control as="select" onChange={onChangeSortBy}>
@@ -128,13 +129,17 @@ const Sidebar = ({
 				{/* <Button variant="primary">Clear filter</Button> */}
 
 				<div className="pagination btn-group d-flex align-items-center pt-1">
-					<Button variant="primary" onClick={() => paginationDecrease()}>
+					<Button
+						className="pagination__button"
+						variant="primary"
+						onClick={() => paginationDecrease()}>
 						Back
 					</Button>
 
-					<div className="p-2">{`${currentPage} из ${totalPages}`}</div>
+					<div className="pagination__pages p-2">{`${currentPage} из ${totalPages}`}</div>
 
 					<Button
+						className="pagination__button"
 						variant="primary"
 						onClick={() => {
 							paginationIncrease();
