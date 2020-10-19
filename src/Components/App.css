@@ -3,7 +3,7 @@
 	top: 0;
 	z-index: 1; */
 	background-color: #081c24;
-	color: aquamarine;
+	/* color: aquamarine; */
 }
 
 /* movie-page */
@@ -11,18 +11,15 @@
 	width: 5rem;
 	height: 5rem;
 }
-/* .movie-page__wrapper { */
-/* background-image: url(); */
-/* } */
+
 .movie-page__img {
 	width: 100%;
 }
 
-/*  */
 .movies-list .card {
 	height: 100%;
 }
-.card-item {
+.card {
 	position: relative;
 	text-overflow: ellipsis;
 }
@@ -84,6 +81,7 @@
 	position: sticky;
 	top: 0;
 	z-index: 1;
+	border: #eeeeee solid 1px;
 }
 
 .pagination__buttons {

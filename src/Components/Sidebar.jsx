@@ -83,71 +83,71 @@ const Sidebar = ({
 	};
 
 	return (
-		// <div className="card">
-		<div className="sidebar">
-			<Form className="p-2">
-				<h3 className="sidebar-top">Filters</h3>
-				<div className="pb-3">
-					<Form.Label>Sort By:</Form.Label>
-					<Form.Control as="select" onChange={onChangeSortBy}>
-						{arrSortBy.map((item) => (
-							<option key={item.name} value={item.id}>
-								{item.name}
-							</option>
-						))}
-					</Form.Control>
-				</div>
-				<div className="pb-3">
-					<Form.Label className="">Release Year:</Form.Label>
-					<Form.Control as="select" onChange={onChangeYear}>
-						<option>Сhoose year:</option>
-						{years}
-					</Form.Control>
-				</div>
-				<div className="pb-3">
-					<Form.Label>Сhoose genre:</Form.Label>
-					<div className="d-flex">
-						<div className="">
-							{moviesGenre.map(({ name, id }) => {
-								const isActive = moviesGenreActive.indexOf(id) !== -1;
+		<Form className="sidebar mb-2 p-2">
+			<h3 className="sidebar-top">Filters</h3>
+			<div className="mb-3">
+				<Form.Label>Sort By:</Form.Label>
+				<Form.Control variant="info" as="select" onChange={onChangeSortBy}>
+					{arrSortBy.map((item) => (
+						<option key={item.name} value={item.id}>
+							{item.name}
+						</option>
+					))}
+				</Form.Control>
+			</div>
+			<div className="mb-3">
+				<Form.Label className="">Release Year:</Form.Label>
+				<Form.Control as="select" onChange={onChangeYear}>
+					<option>Сhoose year:</option>
+					{years}
+				</Form.Control>
+			</div>
+			<div className="mb-3">
+				<Form.Label>Сhoose genre:</Form.Label>
+				<div className="d-flex">
+					<div className="">
+						{moviesGenre.map(({ name, id }) => {
+							const isActive = moviesGenreActive.indexOf(id) !== -1;
 
-								return (
-									<Button
-										key={id}
-										// outline-primary
-										className={isActive ? 'active' : ''}
-										variant="outline-primary"
-										onClick={() => (isActive ? removeMoviesGenre(id) : addMoviesGenre(id))}>
-										{name}
-									</Button>
-								);
-							})}
-						</div>
+							return (
+								<Button
+									key={id}
+									className={isActive ? 'active' : ''}
+									variant="outline-info"
+									onClick={() => (isActive ? removeMoviesGenre(id) : addMoviesGenre(id))}>
+									{name}
+								</Button>
+							);
+						})}
 					</div>
 				</div>
+			</div>
 
-				{/* <Button variant="primary">Clear filter</Button> */}
+			{/* <Button variant="primary">Clear filter</Button> */}
 
-				<div className="pagination btn-group d-flex align-items-center pt-1">
-					<Button
-						className="pagination__button"
-						variant="primary"
-						onClick={() => paginationDecrease()}>
-						Back
-					</Button>
+			<div className="pagination btn-group d-flex align-items-center">
+				<Button
+					disabled={currentPage === 1}
+					className="pagination__button"
+					variant="info"
+					onClick={() => paginationDecrease()}>
+					Back
+				</Button>
 
-					<div className="pagination__pages p-2">{`${currentPage} из ${totalPages}`}</div>
-
-					<Button
-						className="pagination__button"
-						variant="primary"
-						onClick={() => {
-							paginationIncrease();
-						}}>
-						Forward
-					</Button>
+				<div className="pagination__pages p-2">
+					{totalPages ? `${currentPage} из ${totalPages}` : ''}
 				</div>
-				{/* <Pagination>
+
+				<Button
+					className="pagination__button"
+					variant="info"
+					onClick={() => {
+						paginationIncrease();
+					}}>
+					Forward
+				</Button>
+			</div>
+			{/* <Pagination>
 					<Pagination.Prev onClick={() => paginationDecrease()} />
 					<Pagination.Item active>{currentPage}</Pagination.Item>
 					<Pagination.Item onClick={() => dispatch(setCurrentPage(currentPage + 1))}>
@@ -165,23 +165,7 @@ const Sidebar = ({
 							paginationIncrease();
 						}}></Pagination.Next>
 				</Pagination> */}
-			</Form>
-			{/* <div className="card">
-				<div>Will watch: {moviesWillWatch.length}</div>
-				{moviesWillWatch.map((item) => (
-					<>
-						<div>{item.title}</div>
-						<div>
-							<Image
-								className="card-img"
-								src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-								alt="card-img"
-							/>{' '}
-						</div>
-					</>
-				))}
-			</div> */}
-		</div>
+		</Form>
 	);
 };
 

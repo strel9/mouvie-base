@@ -117,7 +117,7 @@ const Home = () => {
 
 	return (
 		<Container>
-			<Row className="pt-2">
+			<Row className="mt-2">
 				<Col xs={12} sm={12} md={3} lg={3}>
 					<Sidebar
 						// currentPage={currentPage}
@@ -141,7 +141,7 @@ const Home = () => {
 					md={9}
 					lg={9}>
 					{loading ? (
-						<Spinner animation="border" variant="primary" />
+						<Spinner animation="border" variant="info" />
 					) : (
 						<MoviesList
 						// movies={movies}

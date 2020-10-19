@@ -66,36 +66,32 @@ const MovieItem = ({ movie }) => {
 
 	return (
 		<div className="card">
-			<Row className="card-item">
-				<Col xs={12} lg={12} className="">
-					<Link to={`/movie-base/movie/${movie.id}`}>{cardImage}</Link>
+			<Link to={`/movie-base/movie/${movie.id}`}>{cardImage}</Link>
 
-					<div>
-						<h5 className="card-title mt-2">{movie.title}</h5>
+			<div>
+				<h5 className="card-title m-2">{movie.title}</h5>
 
-						<div className="card__progressbar" style={{ width: 50, height: 50 }}>
-							<CircularProgressbar
-								className=""
-								background
-								backgroundPadding={6}
-								value={movie.vote_average * 10}
-								text={`${movie.vote_average * 10}%`}
-								strokeWidth={9}
-								styles={buildStyles({
-									backgroundColor: '#FFFFFF',
-									textColor: '#1B69D9',
-									// textSize: '25',
-									pathColor: '#1B69D9',
-									trailColor: '',
-								})}
-							/>
-						</div>
-						<div className="card__like-btn">
-							<LikeButton movie={movie} />
-						</div>
-					</div>
-				</Col>
-			</Row>
+				<div className="card__progressbar" style={{ width: 50, height: 50 }}>
+					<CircularProgressbar
+						className=""
+						background
+						backgroundPadding={6}
+						value={movie.vote_average * 10}
+						text={`${movie.vote_average * 10}%`}
+						strokeWidth={9}
+						styles={buildStyles({
+							backgroundColor: '#FFFFFF',
+							textColor: '#1B69D9',
+							// textSize: '25',
+							pathColor: '#1B69D9',
+							trailColor: '',
+						})}
+					/>
+				</div>
+				<div className="card__like-btn">
+					<LikeButton movie={movie} />
+				</div>
+			</div>
 		</div>
 	);
 };
