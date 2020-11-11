@@ -40,9 +40,9 @@ const MoviePage = ({ movieId }) => {
 					/>
 				</Col>
 				<Col xs={12} sm={12} md={9} lg={9}>
-					<h2>{movie.title}</h2>
+					<h2>{`TITLE: ${movie.title}`}</h2>
 					<div className="d-flex">
-						<div className="movie-page__progressbar" style={{ width: 50, height: 50 }}>
+						<div className="" style={{ width: 50, height: 50 }}>
 							<CircularProgressbar
 								className=""
 								background
